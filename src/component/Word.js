@@ -13,20 +13,29 @@ export default function Word(props) {
       backgroundColor={"white"}
       borderRadius={8}
     >
-      <Heading>{props.data.word}</Heading>
-      <chakra.h2 fontWeight={400} fontSize="lg">
-        {props.data.phonetic}
-      </chakra.h2>
+      <Heading mb={4}>{props.data.word}</Heading>
       <Link
+        mr={4}
         fontWeight={400}
         fontSize="lg"
         href={props.data.phonetics[0].audio}
         target={"_blank"}
         color={"pink.700"}
-        textDecoration={"underline"}
+        borderWidth={1}
+        borderRadius={16}
+        borderColor={"pink.700"}
+        p={2}
+        _hover={{
+          bg: "pink.700",
+          color: "white",
+          borderColor: "white",
+        }}
       >
         Listen
       </Link>
+      <chakra.h2 as="span" fontWeight={400} fontSize="lg" mt={4}>
+        {props.data.phonetic}
+      </chakra.h2>
     </Box>
   );
 }

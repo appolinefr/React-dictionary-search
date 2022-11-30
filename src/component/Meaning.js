@@ -15,9 +15,13 @@ export default function Meaning(props) {
       backgroundColor={"white"}
       borderRadius={8}
     >
-      <Text fontWeight={500}>{props.meaning.partOfSpeech}</Text>
+      <Text fontWeight={600} my={2} fontSize={"xl"}>
+        {props.meaning.partOfSpeech}
+      </Text>
       <Text>{props.meaning.definitions[0].definition}</Text>
-      <Text fontStyle={"italic"}>{props.meaning.definitions[0].example}</Text>
+      <Text fontStyle={"italic"} color={"grey"} my={2}>
+        {props.meaning.definitions[0].example}
+      </Text>
       <Synonyms synonyms={props.meaning.synonyms} />
     </Box>
   );

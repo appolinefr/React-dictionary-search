@@ -8,7 +8,7 @@ export default function Synonyms(props) {
       <div className="synonyms">
         {props.synonyms.map((synonym, index) => {
           return (
-            <Text as={"span"} fontStyle={"italic"} m={1} backgroundColor={"gray.100"} key={index}> {" "}
+            <Text as={"span"} fontStyle={"italic"} m={1} backgroundColor={"pink.700"} p={1} borderRadius={4} color={"white"} key={index}> {" "}
               {synonym}
             </Text>
           );
