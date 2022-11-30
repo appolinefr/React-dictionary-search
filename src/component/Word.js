@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-import { Box, Container, Heading, chakra } from "@chakra-ui/react";
+import { Box, Container, Heading, chakra, Link } from "@chakra-ui/react";
 
 export default function Word(props) {
   return (
@@ -9,6 +9,15 @@ export default function Word(props) {
       <chakra.h2 fontWeight={400} fontSize="lg">
         {props.data.phonetic}
       </chakra.h2>
+      <Link
+        fontWeight={400}
+        fontSize="lg"
+        href={props.data.phonetics[0].audio}
+        target={"_blank"}
+        color={"pink.700"}
+      >
+        Listen
+      </Link>
     </Box>
   );
 }
