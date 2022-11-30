@@ -8,7 +8,7 @@ import Meaning from "./Meaning";
 export default function Result(props) {
   if (props.data) {
     return (
-      <Container>
+      <Container maxW="4xl">
         <Word data={props.data} />
         {props.data.meanings.map((meaning, index) => {
           return (

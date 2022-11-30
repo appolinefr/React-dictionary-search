@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import { Box, Container, Text, Heading, Input, Flex } from "@chakra-ui/react";
+import { Box, Container, Text, Heading, Input } from "@chakra-ui/react";
 
 import Result from "./Result";
 
-export default function Search() {
-  const [word, setWord] = useState("");
+export default function Search(props) {
+  const [word, setWord] = useState(props.defaultWord);
   const [definition, setDefinition] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -32,56 +32,37 @@ export default function Search() {
 
   if (loaded) {
     return (
-      <Box as={Container} maxW="full" p={4}>
-        <Box as={Container} maxW="full" p={4}>
-          <Heading mb={8} textAlign={"center"}>
-            React Dictionary
-          </Heading>
-          <Text mb={4} textAlign={"center"}>
+      <Box as={Container} maxW="full" p={4} backgroundColor={"#"}>
+        <Heading my={8} textAlign={"center"} color={"#"}>
+          React Dictionary
+        </Heading>
+        <Box
+          as={Container}
+          maxW="4xl"
+          p={6}
+          backgroundColor={"white"}
+          borderRadius={8}
+          textAlign={"center"}
+        >
+          <Text fontSize={"lg"} p={2} fontWeight={600}>
             What word would you like to search?
           </Text>
-          <form onSubmit={search}>
-            <Flex justifyContent={"center"}>
-              <Input
-                type="search"
-                placeholder="Search for a word..."
-                margin={2}
-                maxWidth={"500px"}
-                onChange={handleWordChange}
-              />
-              <Input type={"submit"} margin={2} maxWidth={"120px"} />
-            </Flex>
+          <form onSubmit={search} p={6}>
+            <Input
+              type="search"
+              placeholder="Search for a word..."
+              margin={2}
+              maxWidth={"700px"}
+              onChange={handleWordChange}
+            />
           </form>
         </Box>
-        <Box as={Container} maxW="full" p={4}>
+        <Box as={Container} maxW="full" p={6}>
           <Result data={definition} />
         </Box>
       </Box>
     );
   } else {
-    return (
-      <Box as={Container} maxW="full" p={4}>
-        <Box as={Container} maxW="full" p={4}>
-          <Heading mb={8} textAlign={"center"}>
-            React Dictionary
-          </Heading>
-          <Text mb={4} textAlign={"center"}>
-            What word would you like to search?
-          </Text>
-          <form onSubmit={search}>
-            <Flex justifyContent={"center"}>
-              <Input
-                type="search"
-                placeholder="Search for a word..."
-                margin={2}
-                maxWidth={"500px"}
-                onChange={handleWordChange}
-              />
-              <Input type={"submit"} margin={2} maxWidth={"120px"} />
-            </Flex>
-          </form>
-        </Box>
-      </Box>
-    );
+    return dictionarySearch();
   }
 }
