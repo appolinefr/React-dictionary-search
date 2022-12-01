@@ -8,7 +8,7 @@ import Search from "./component/Search";
 function App() {
   return (
     <ChakraProvider>
-      <Search defaultWord={"Spaghetti"}/>
+      <Search defaultWord={"Beer"}/>
     </ChakraProvider>
   );
 }

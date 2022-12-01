@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import { Box, Container, Text, Heading, Input } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Text,
+  Heading,
+  Input,
+} from "@chakra-ui/react";
 
 import Result from "./Result";
+import Photos from "./Photos";
 
 export default function Search(props) {
   const [word, setWord] = useState(props.defaultWord);
   const [definition, setDefinition] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [photos, setPhotos] = useState(null);
 
   const search = (e) => {
     e.preventDefault();
@@ -19,15 +27,26 @@ export default function Search(props) {
     setWord(e.target.value);
   };
 
+  const handlePexelResponse = (response) => {
+    setPhotos(response.data.photos);
+  };
+
   const handleResponse = (response) => {
-    console.log(response.data[0]);
     setDefinition(response.data[0]);
     setLoaded(true);
   };
 
   const dictionarySearch = () => {
-    let url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
     axios.get(url).then(handleResponse);
+
+    const pexelApiKey =
+      "563492ad6f91700001000001fddcea100ece4eb682d6b169ae513ef8";
+    const pexelUrl = `https://api.pexels.com/v1/search?query=${word}
+`;
+
+    const headers = { Authorization: `Bearer ${pexelApiKey}` };
+    axios.get(pexelUrl, { headers }).then(handlePexelResponse);
   };
 
   if (loaded) {
@@ -57,12 +76,12 @@ export default function Search(props) {
             />
           </form>
         </Box>
-        <Box as={Container} maxW="full" p={6}>
           <Result data={definition} />
-        </Box>
+          <Photos photos={photos} />
       </Box>
     );
   } else {
     return dictionarySearch();
   }
 }
+
