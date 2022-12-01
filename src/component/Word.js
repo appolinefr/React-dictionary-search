@@ -20,13 +20,13 @@ export default function Word(props) {
         fontSize="lg"
         href={props.data.phonetics[0].audio}
         target={"_blank"}
-        color={"pink.700"}
+        color={"#810955"}
         borderWidth={1}
         borderRadius={16}
-        borderColor={"pink.700"}
+        borderColor={"#810955"}
         p={2}
         _hover={{
-          bg: "pink.700",
+          bg: "#810955",
           color: "white",
           borderColor: "white",
         }}

@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import {
-  Box,
-  Container,
-  Text,
-  Heading,
-  Input,
-} from "@chakra-ui/react";
+import { Box, Container, Text, Input } from "@chakra-ui/react";
 
 import Result from "./Result";
 import Photos from "./Photos";
@@ -51,21 +45,21 @@ export default function Search(props) {
 
   if (loaded) {
     return (
-      <Box as={Container} maxW="full" p={4} backgroundColor={"#"}>
-        <Heading my={8} textAlign={"center"} color={"#"}>
-          React Dictionary
-        </Heading>
+      <Box as={Container} maxW="full" p={4} backgroundColor={"gray.50"}>
         <Box
           as={Container}
-          maxW="4xl"
+          maxW="3xl"
           p={6}
-          backgroundColor={"white"}
+          borderWidth={1}
+          my={8}
+          backgroundColor={"gray.500"}
           borderRadius={8}
           textAlign={"center"}
         >
-          <Text fontSize={"lg"} p={2} fontWeight={600}>
+          <Text fontSize={"lg"} fontWeight={600} color={"white"}>
             What word would you like to search?
           </Text>
+
           <form onSubmit={search} p={6}>
             <Input
               type="search"
@@ -73,15 +67,16 @@ export default function Search(props) {
               margin={2}
               maxWidth={"700px"}
               onChange={handleWordChange}
+              focusBorderColor={"white"}
+              backgroundColor={"white"}
             />
           </form>
         </Box>
-          <Result data={definition} />
-          <Photos photos={photos} />
+        <Result data={definition} />
+        <Photos photos={photos} />
       </Box>
     );
   } else {
     return dictionarySearch();
   }
 }
-
